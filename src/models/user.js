@@ -69,7 +69,7 @@ userSchema.methods.getPublicProfile = async function () {
 };
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: String(this._id) }, "thisismynewcourse"); //this._id เป็น object ต้องแปลงเป็น string
+  const token = jwt.sign({ _id: String(this._id) }, process.env.JWT_SECRET); //this._id เป็น object ต้องแปลงเป็น string
   this.tokens.push({ token });
   user.save();
   return token;
